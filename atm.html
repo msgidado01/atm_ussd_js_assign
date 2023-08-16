@@ -1,0 +1,57 @@
+<script>
+let correctPin = "1234"; // Default PIN
+let balance = 2000; // Available Balance
+
+let enteredPin = prompt("Please enter your secret PIN number:");
+
+if (enteredPin === correctPin) {
+  while (true) {
+    let option = parseInt(prompt(`
+      What do you want to perform:
+      1. Check Balance
+      2. Withdraw
+      3. Transfer
+      4. Recharge Airtime
+      5. End`
+    ));
+
+    if (option === 1) {
+      alert(`Your current balance is: ${balance}`);
+    } else if (option === 2) {
+      let withdrawAmount = parseFloat(prompt("Enter withdrawal amount:"));
+      if (withdrawAmount <= balance) {
+        balance -= withdrawAmount;
+        alert(`Withdrawal Successful.`);
+      } else {
+        alert(`Insufficient Balance.`);
+      }
+    } else if (option === 3) {
+      let transferAmount = parseFloat(prompt("Enter transfer amount:"));
+      let recipientAccount = prompt("Enter recipient account:");
+      if (transferAmount <= balance) {
+        balance -= transferAmount;
+        alert(`Transfer to ${recipientAccount} successful.`);
+      } else {
+        alert(`Insufficient Balance.`);
+      }
+    } else if (option === 4) {
+      let rechargeAmount = parseFloat(prompt("Enter recharge amount:"));
+      if (rechargeAmount <= balance) {
+        balance -= rechargeAmount;
+        alert(`Airtime recharge successful.`);
+      } else {
+        alert(`Insufficient Balance`);
+      }
+    } else if (option === 5) {
+      alert("Thanks for using the ATM. Have a Nice Day!");
+      end();
+    } else {
+      alert("Invalid option. Please select a valid option.");
+    }
+  }
+} else {
+  alert("Incorrect PIN.");
+  end();
+}
+
+</script>

@@ -1,0 +1,49 @@
+<script>
+
+let balance = 2500; // Initial balance
+
+while (true) {
+  let choice = Number(prompt(` Welcome to GTB Magic Banking
+    What do you want to perform:
+    1. Buy Airtime
+    2. Buy Data
+    3. Transfer
+    4. Exit
+  `));
+
+  if (choice === 1) {
+    let airtimeAmount = parseFloat(prompt("Enter airtime amount:"));
+    let recipientPhoneNumber = prompt("Enter recipient's phone number:");
+    if (airtimeAmount <= balance) {
+      balance -= airtimeAmount;
+      alert(`Airtime purchase successful for ${recipientPhoneNumber}.`);
+    } else {
+      alert(`Insufficient balance.`);
+    }
+  } else if (choice === 2) {
+    let dataAmount = parseFloat(prompt("Enter data amount:"));
+    let recipientPhoneNumber = prompt("Enter recipient's phone number:");
+    if (dataAmount <= balance) {
+      balance -= dataAmount;
+      alert(`Data purchase successful for ${recipientPhoneNumber}.`);
+    } else {
+      alert(`Insufficient balance.`);
+    }
+  } else if (choice === 3) {
+    let transferAmount = parseFloat(prompt("Enter transfer amount:"));
+    let recipientAccount = prompt("Enter recipient account:");
+    if (transferAmount <= balance) {
+      balance -= transferAmount;
+      alert(`Transfer to ${recipientAccount} successful.`);
+    } else {
+      alert(`Insufficient balance.`);
+    }
+  } else if (choice === 4) {
+    alert("Thanks for using USSD!");
+    exit();
+  } else {
+    alert("Invalid choice. Please select a valid option.");
+  }
+}
+
+</script>
