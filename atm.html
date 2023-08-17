@@ -1,57 +1,92 @@
-<script>
-let correctPin = "1234"; // Default PIN
-let balance = 2000; // Available Balance
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ATM Operation | Using if else statement</title>
 
-let enteredPin = prompt("Please enter your secret PIN number:");
-
-if (enteredPin === correctPin) {
-  while (true) {
-    let option = parseInt(prompt(`
-      What do you want to perform:
-      1. Check Balance
-      2. Withdraw
-      3. Transfer
-      4. Recharge Airtime
-      5. End`
-    ));
-
-    if (option === 1) {
-      alert(`Your current balance is: ${balance}`);
-    } else if (option === 2) {
-      let withdrawAmount = parseFloat(prompt("Enter withdrawal amount:"));
-      if (withdrawAmount <= balance) {
-        balance -= withdrawAmount;
-        alert(`Withdrawal Successful.`);
-      } else {
-        alert(`Insufficient Balance.`);
-      }
-    } else if (option === 3) {
-      let transferAmount = parseFloat(prompt("Enter transfer amount:"));
-      let recipientAccount = prompt("Enter recipient account:");
-      if (transferAmount <= balance) {
-        balance -= transferAmount;
-        alert(`Transfer to ${recipientAccount} successful.`);
-      } else {
-        alert(`Insufficient Balance.`);
-      }
-    } else if (option === 4) {
-      let rechargeAmount = parseFloat(prompt("Enter recharge amount:"));
-      if (rechargeAmount <= balance) {
-        balance -= rechargeAmount;
-        alert(`Airtime recharge successful.`);
-      } else {
-        alert(`Insufficient Balance`);
-      }
-    } else if (option === 5) {
-      alert("Thanks for using the ATM. Have a Nice Day!");
-      end();
-    } else {
-      alert("Invalid option. Please select a valid option.");
-    }
-  }
-} else {
-  alert("Incorrect PIN.");
-  end();
-}
-
-</script>
+	<script>
+		let correctPin = "1234"; // Default PIN
+		let balance = 2000; // Available Balance
+		
+		alert("Welcome to Zenith Bank ATM!");
+		let enteredPin = prompt("Please enter your secret PIN number:");
+		
+		if (enteredPin === correctPin) {
+			while (true) {
+				let option = parseInt(prompt(`
+					What do you want to perform:
+					1. > Check Balance           2. > Withdraw
+					3. > Transfer                     4. > Recharge Airtime
+					5. > Change PIN               6. > End`
+				));
+		
+				if (option === 1) {
+					alert(`Your current balance is: ${balance}`);
+				} else if (option === 2) {
+					let accountType = prompt(`Please select account type
+						 1. Saving
+						 2. Current`)
+					let withdrawAmount = parseFloat(prompt("Enter withdrawal amount:"));
+					if (withdrawAmount <= balance) {
+						balance -= withdrawAmount;
+						confirm(`Are you sure you want withdraw ${withdrawAmount}`);
+						alert("Please wait while your transaction is processing!");
+						alert(`Withdrawal Successful. Please take your cash.`);
+						confirm(`Do you want perform another transaction?`);
+					} else {
+						alert(`Insufficient Balance.`);
+					}
+				} else if (option === 3) {
+					let transferAmount = parseFloat(prompt("Enter transfer amount:"));
+					let recipientAccount = prompt("Enter recipient account:");
+					if (transferAmount <= balance) {
+						balance -= transferAmount;
+						confirm(`Please confirm the amount you want to transfer ${transferAmount}`);
+						alert("Please wait while your transaction is processing!");
+						alert(`Transfer to ${recipientAccount} is successful.`);
+						confirm(`Do you want perform another transaction?`);
+					} else {
+						alert(`Insufficient Balance.`);
+					}
+				} else if (option === 4) {
+					let mobileNetwork = prompt(`Choose your mobile network
+							1. MTN
+							2. Airtel
+							3. Glo
+							4. 9Mobile`)
+					let rechargeAmount = parseFloat(prompt("Enter recharge amount:"));
+					if (rechargeAmount <= balance) {
+						balance -= rechargeAmount;
+						confirm(`Are you sure you want recharge ${rechargeAmount}`);
+						alert(`Airtime recharge successful.`);
+					} else {
+						alert(`Insufficient Balance`);
+					}
+				} else if (option === 5) {
+					let newPin = prompt("Enter your new PIN:");
+					let confirmNewPin = prompt("Confirm your new PIN:");
+					if (newPin === confirmNewPin) {
+						correctPin = newPin;
+						alert("PIN changed successfully.");
+					} else {
+						alert("PIN change failed. The entered PINs do not match.");
+					}
+				} else if (option === 6) {
+					alert("Thanks for using the ATM. Have a Nice Day!");
+					break;
+				} else {
+					alert("Invalid option. Please select a valid option.");
+				}
+			}
+		} else {
+			alert("Incorrect PIN.");
+			end();
+		}
+		
+		</script>
+</head>
+<body>
+	
+</body>
+</html>
